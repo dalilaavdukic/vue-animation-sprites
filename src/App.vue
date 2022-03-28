@@ -1,26 +1,39 @@
 <template>
-  <img alt="Vue logo" src="./assets/logo.png">
-  <HelloWorld msg="Welcome to Your Vue.js App"/>
+  <div class="app-container">
+    <div v-for="character in characters" :key="character">
+      <character-animation
+        :character="character"
+        :action="availableActions[animations[character]]"
+      ></character-animation>
+      <animation-selector v-model="animations[character]"></animation-selector>
+    </div>
+  </div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import CharacterAnimation from "./components/CharacterAnimation.vue";
+import AnimationSelector from "./components/AnimationSelector.vue";
+import characterActions from "@/assets/constants/characterActions";
 
 export default {
-  name: 'App',
-  components: {
-    HelloWorld
-  }
-}
+  name: "App",
+  components: { CharacterAnimation, AnimationSelector },
+  data() {
+    return {
+      availableActions: characterActions,
+      characters: ["vue", "angular", "react"],
+      animations: {
+        vue: characterActions.idle.name,
+        angular: characterActions.idle.name,
+        react: characterActions.idle.name,
+      },
+    };
+  },
+};
 </script>
 
-<style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+<style scoped>
+.app-container {
+  display: flex;
 }
 </style>
