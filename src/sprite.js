@@ -6,7 +6,7 @@ export default (options) => {
     options;
 
   return {
-    render: function () {
+    render() {
       // clear the canvas
       context.clearRect(0, 0, width, height);
       // draw the image
@@ -22,7 +22,7 @@ export default (options) => {
         height
       );
     },
-    update: function () {
+    update() {
       tickCount += 1;
 
       if (tickCount > ticksPerFrame) {
