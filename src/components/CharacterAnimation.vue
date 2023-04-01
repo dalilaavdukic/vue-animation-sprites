@@ -17,12 +17,12 @@ export default {
     };
   },
   methods: {
-    animate: function () {
+    animate() {
       requestAnimationFrame(this.animate);
       this.characterSprite.update();
       this.characterSprite.render();
     },
-    renderCanvas: function () {
+    renderCanvas() {
       const canvas = this.$refs.characterAnimation;
       canvas.width = width;
       canvas.height = height;

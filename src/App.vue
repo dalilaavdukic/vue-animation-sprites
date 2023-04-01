@@ -1,11 +1,11 @@
 <template>
   <div class="app-container">
-    <div v-for="character in characters" :key="character">
+    <div v-for="character in characters" :key="character.name">
       <character-animation
-        :character="character"
-        :action="availableActions[animations[character]]"
+        :character="character.name"
+        :action="availableActions[character.animation]"
       ></character-animation>
-      <animation-selector v-model="animations[character]"></animation-selector>
+      <animation-selector v-model="character.animation"></animation-selector>
     </div>
   </div>
 </template>
@@ -21,12 +21,20 @@ export default {
   data() {
     return {
       availableActions: characterActions,
-      characters: ["vue", "angular", "react"],
-      animations: {
-        vue: characterActions.idle.name,
-        angular: characterActions.idle.name,
-        react: characterActions.idle.name,
-      },
+      characters: [
+        {
+          name: "vue",
+          animation: characterActions.idle.name,
+        },
+        {
+          name: "angular",
+          animation: characterActions.idle.name,
+        },
+        {
+          name: "react",
+          animation: characterActions.idle.name,
+        },
+      ],
     };
   },
 };
